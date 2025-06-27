@@ -1,9 +1,6 @@
-FROM postgrest/postgrest:latest
+FROM postgrest/postgrest
 
 COPY postgrest.conf /etc/postgrest.conf
 
-ENV PGRST_DB_URI=$DATABASE_URL
-ENV PGRST_DB_ANON_ROLE=anonymous
-ENV PGRST_DB_SCHEMA=public
-
-CMD ["postgrest", "/etc/postgrest.conf"]
+# Añadir esta línea para evitar el error de UID 1000
+USER nobody
